@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BHC 브랜드 페이지</title>
   <style>
-    /* 1. 기본 스타일 - 왼쪽 여백 및 중앙 정렬 여백 제거 */
+    /* 여백 초기화 및 기본 설정 */
     * {
       margin: 0;
       padding: 0;
@@ -23,20 +23,19 @@
       color: inherit;
     }
 
-    /* 2. 전체 컨테이너 - 왼쪽부터 꽉 차게 정렬 */
+    /* 화면 전체를 왼쪽부터 꽉 차게 레이아웃 잡기 */
     .app-container {
       display: flex;
       width: 100vw;
       height: 100vh;
       margin: 0;
       padding: 0;
-      justify-content: flex-start; /* 왼쪽부터 시작하도록 고정 */
     }
 
-    /* 3. 좌측 노란색 사이드바 - 왼쪽 끝에 고정 */
+    /* 좌측 노란색 세로 고정 사이드바 */
     .sidebar {
       width: 220px;
-      height: 100%;
+      height: 100vh;
       background-color: #ffff00;
       padding: 30px 20px;
       display: flex;
@@ -80,10 +79,10 @@
       color: #e60012;
     }
 
-    /* 4. 우측 메인 그리드 */
+    /* 우측 메인 그리드 영역 (화면 남은 너비 꽉 채움) */
     .main-content {
       flex: 1;
-      height: 100%;
+      height: 100vh;
       display: flex;
       flex-direction: column;
     }
@@ -106,40 +105,43 @@
       overflow: hidden;
     }
 
+    /* 이미지 배경 처리 */
     .tile-img {
       background-size: cover;
       background-position: center;
+      background-repeat: no-repeat;
     }
 
+    /* 비율 분할 */
     .w-60 { width: 60%; }
     .w-50 { width: 50%; }
     .w-40 { width: 40%; }
 
     .tile h2 {
-      font-size: 26px;
+      font-size: 24px;
       color: #111;
       margin-bottom: 8px;
       font-weight: 700;
     }
     .tile h3 {
-      font-size: 22px;
+      font-size: 20px;
       color: #111;
       margin-bottom: 6px;
       font-weight: 700;
     }
     .tile .price {
       color: #ff3b30;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 700;
       margin-bottom: 8px;
     }
     .tile p.desc {
       color: #666;
-      font-size: 14px;
+      font-size: 13px;
       line-height: 1.5;
     }
 
-    /* 5. 반응형 미디어 쿼리 (화면 줄어들 때만 동작) */
+    /* 반응형 구조 (화면 줄어들 때) */
     @media (max-width: 1024px) {
       html, body { height: auto; }
       .app-container {
@@ -159,7 +161,7 @@
       .menu-title { margin-bottom: 0; }
       .sidebar ul { flex-direction: row; gap: 12px; }
 
-      .row-hero, .row-item { height: 260px; }
+      .row-hero, .row-item { height: 250px; }
     }
 
     @media (max-width: 640px) {
@@ -184,7 +186,7 @@
 <body>
 
   <div class="app-container">
-    <!-- 좌측 노란색 세로 사이드바 -->
+    <!-- 1. 좌측 고정 사이드바 -->
     <aside class="sidebar">
       <h1 class="logo">bhc.</h1>
       <div class="menu-group">
@@ -198,12 +200,12 @@
       </div>
     </aside>
 
-    <!-- 우측 치킨 그리드 -->
+    <!-- 2. 우측 그리드 (사진+텍스트) -->
     <main class="main-content">
 
-      <!-- 메인 브랜드 섹션 -->
+      <!-- 메인 BHC 섹션 -->
       <div class="grid-row row-hero">
-        <div class="tile tile-img w-60" style="background-image: url('images/main.jpg');"></div>
+        <div class="tile tile-img w-60" style="background-image: url('https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=1000&q=80');"></div>
         <div class="tile w-40">
           <h2>BHC 브랜드</h2>
           <p class="desc">바삭함의 정석, BHC 대표 치킨 시리즈</p>
@@ -212,7 +214,7 @@
 
       <!-- 후라이드 치킨 섹션 -->
       <div class="grid-row row-item">
-        <div class="tile tile-img w-50" style="background-image: url('images/fried.png');"></div>
+        <div class="tile tile-img w-50" style="background-image: url('https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=800&q=80');"></div>
         <div class="tile w-50">
           <h3>후라이드 치킨</h3>
           <p class="price">20,000원</p>
@@ -222,7 +224,7 @@
 
       <!-- 양념 치킨 섹션 -->
       <div class="grid-row row-item">
-        <div class="tile tile-img w-50" style="background-image: url('images/yangnyeom.jpg');"></div>
+        <div class="tile tile-img w-50" style="background-image: url('https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?auto=format&fit=crop&w=800&q=80');"></div>
         <div class="tile w-50">
           <h3>양념 치킨</h3>
           <p class="price">21,000원</p>
@@ -232,7 +234,7 @@
 
       <!-- 뿌링클 치킨 섹션 -->
       <div class="grid-row row-item">
-        <div class="tile tile-img w-50" style="background-image: url('images/bburing.jpg');"></div>
+        <div class="tile tile-img w-50" style="background-image: url('https://images.unsplash.com/photo-1527477396000-e27163b481c2?auto=format&fit=crop&w=800&q=80');"></div>
         <div class="tile w-50">
           <h3>뿌링클 치킨</h3>
           <p class="price">21,000원</p>
