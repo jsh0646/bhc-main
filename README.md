@@ -3,333 +3,248 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LAGO DI GARDA - Responsive Maldives</title>
+  <title>BHC 브랜드 페이지</title>
   <style>
     /* 1. 기본 스타일 */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Noto Sans KR', sans-serif;
     }
-    body {
-      background-color: #f8f9fa;
-      color: #333;
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow-x: hidden;
+      background-color: #fff;
     }
     a {
       text-decoration: none;
       color: inherit;
     }
 
-    /* 2. 상단 유틸리티 바 (PC 기본) */
-    .top-bar {
-      width: 100%;
-      height: 32px;
-      background: #111;
-      color: #ccc;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 20px;
-      font-size: 11px;
-    }
-    .top-bar a {
-      margin-right: 15px;
-      color: #aaa;
-    }
-    .top-bar a:hover { color: #fff; }
-
-    /* 3. 메인 전체 레이아웃 (PC 기본: 좌측 사이드바 + 우측 콘텐츠) */
+    /* 2. 전체 앱 컨테이너 (화면 높이 100% 채움) */
     .app-container {
       display: flex;
-      min-height: calc(100vh - 32px);
+      width: 100vw;
+      height: 100vh;
     }
 
-    /* 좌측 고정 사이드바 */
+    /* 3. 좌측 고정 사이드바 (노란색 세로 배치) */
     .sidebar {
       width: 220px;
-      background: #fff;
+      height: 100%;
+      background-color: #ffff00; /* BHC 노란색 */
       padding: 30px 20px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      border-right: 1px solid #eee;
+      justify-content: flex-start;
+      border-right: 1px solid #e5e500;
       flex-shrink: 0;
     }
-    .brand-logo {
-      text-align: center;
-      margin-bottom: 30px;
+    .logo {
+      color: #e60012;
+      font-size: 36px;
+      font-weight: 900;
+      margin-bottom: 40px;
+      letter-spacing: -1px;
     }
-    .brand-logo svg { width: 40px; height: 30px; }
-    .brand-logo h2 {
-      font-size: 13px;
-      letter-spacing: 2px;
-      font-weight: 600;
+    .menu-group {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
     }
-    .brand-logo span {
-      font-size: 10px;
-      color: #888;
-      letter-spacing: 3px;
-    }
-
-    .main-nav ul {
-      list-style: none;
-    }
-    .main-nav li {
-      margin-bottom: 20px;
-    }
-    .main-nav a {
+    .menu-title {
+      font-weight: 700;
       font-size: 15px;
-      font-weight: 600;
-      color: #444;
+      line-height: 1.4;
+      color: #111;
+      margin-bottom: 5px;
+    }
+    .sidebar ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .sidebar ul li a {
+      font-size: 14px;
+      color: #222;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .sidebar ul li a:hover {
+      color: #e60012;
     }
 
-    .sidebar-footer {
-      font-size: 11px;
-      color: #777;
-    }
-    .sidebar-footer .links { margin-bottom: 8px; }
-    .sidebar-footer .socials span {
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      background: #eee;
-      text-align: center;
-      line-height: 20px;
-      margin-right: 4px;
-      font-weight: bold;
-    }
-
-    /* 우측 그리드 컨테이너 */
+    /* 4. 우측 메인 그리드 영역 (화면 높이 100% 분할) */
     .main-content {
       flex: 1;
+      height: 100%;
       display: flex;
       flex-direction: column;
     }
 
-    /* 그리드 Row */
+    /* 각 행(Row) - 높이 비율 분할 */
     .grid-row {
       display: flex;
-      min-height: 320px;
-      border-bottom: 1px solid #fff;
+      width: 100%;
+      border-bottom: 1px solid #eee;
     }
+    
+    /* PC 전체 화면 기준 행 높이 배분 */
+    .row-hero { height: 28%; }
+    .row-item { height: 24%; }
 
-    /* 타일 공통 */
+    /* 타일 공통 스타일 */
     .tile {
-      position: relative;
-      overflow: hidden;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 30px;
-      min-height: 250px;
+      padding: 25px 35px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* 이미지 타일 */
+    .tile-img {
+      background-size: cover;
+      background-position: center;
     }
 
     /* 비율 클래스 */
     .w-60 { width: 60%; }
     .w-50 { width: 50%; }
     .w-40 { width: 40%; }
-    .w-35 { width: 35%; }
-    .w-25 { width: 25%; }
-    .w-15 { width: 15%; }
 
-    .bg-img {
-      background-size: cover;
-      background-position: center;
+    /* 텍스트 스타일 */
+    .tile h2 {
+      font-size: 26px;
+      color: #111;
+      margin-bottom: 8px;
+      font-weight: 700;
     }
-    .bg-light-blue { background-color: #8be0ff; color: #fff; }
-    .bg-white { background-color: #ffffff; }
-
-    .hero-title {
-      position: absolute;
-      bottom: 10px;
-      right: -10px;
-      font-size: 90px;
-      font-weight: 300;
-      color: rgba(255, 255, 255, 0.95);
-      letter-spacing: -2px;
-      pointer-events: none;
-    }
-
     .tile h3 {
       font-size: 22px;
-      font-weight: 400;
-      margin-bottom: 10px;
+      color: #111;
+      margin-bottom: 6px;
+      font-weight: 700;
     }
-    .tile p {
-      font-size: 13px;
+    .tile .price {
+      color: #ff3b30;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .tile p.desc {
       color: #666;
+      font-size: 14px;
       line-height: 1.5;
     }
-    .bg-light-blue h3 { color: #fff; }
 
-    /* ===================================================
-       반응형 미디어 쿼리 (Media Queries)
-       =================================================== */
-
-    /* 1. 중간 화면 (노트북/태블릿 - 화면 너비 1024px 이하) */
+    /* 5. 반응형 미디어 쿼리 (창 크기 변동 시) */
     @media (max-width: 1024px) {
+      html, body { height: auto; }
       .app-container {
-        flex-direction: column; /* 사이드바가 위로 올라감 */
+        flex-direction: column;
+        height: auto;
       }
       .sidebar {
         width: 100%;
         height: auto;
-        border-right: none;
-        border-bottom: 1px solid #ddd;
+        padding: 15px 20px;
         flex-direction: row;
         align-items: center;
-        padding: 15px 25px;
+        justify-content: space-between;
       }
-      .brand-logo {
-        margin-bottom: 0;
-        text-align: left;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-      .brand-logo h2 { font-size: 11px; }
-      .brand-logo span { display: none; }
-      
-      .main-nav ul {
-        display: flex;
-        gap: 20px;
-      }
-      .main-nav li { margin-bottom: 0; }
-      .main-nav a { font-size: 13px; }
+      .logo { margin-bottom: 0; font-size: 28px; }
+      .menu-group { flex-direction: row; align-items: center; gap: 20px; }
+      .menu-title { margin-bottom: 0; }
+      .sidebar ul { flex-direction: row; gap: 12px; }
 
-      .sidebar-footer { display: none; } /* 상단으로 이동 시 푸터 숨김 */
-
-      /* 비율 조정: 4분할/3분할을 2열(50%) 구조로 커스텀 */
-      .grid-row {
-        flex-wrap: wrap;
-        min-height: auto;
-      }
-      .w-60, .w-40, .w-50, .w-35, .w-25, .w-15 {
-        width: 50%; /* 중간 화면에서는 2개씩 50% 분할 */
-      }
-      .hero-title {
-        font-size: 70px;
-      }
+      .row-hero, .row-item { height: 260px; }
     }
 
-    /* 2. 작은 화면 (모바일 - 화면 너비 640px 이하) */
     @media (max-width: 640px) {
-      .top-bar {
-        font-size: 10px;
-        padding: 0 10px;
-      }
       .sidebar {
         flex-direction: column;
-        gap: 15px;
-        padding: 15px;
+        align-items: flex-start;
+        gap: 10px;
       }
-      .main-nav ul {
-        gap: 12px;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-
-      /* 모바일에서는 모든 타일이 100% 폭으로 1열 세로 정렬 */
+      .sidebar ul { flex-wrap: wrap; gap: 8px; }
       .grid-row {
         flex-direction: column;
+        height: auto;
       }
-      .w-60, .w-40, .w-50, .w-35, .w-25, .w-15 {
+      .w-60, .w-50, .w-40 {
         width: 100%;
       }
-      .tile {
-        min-height: 200px;
-        padding: 20px;
-      }
-      .hero-title {
-        font-size: 45px;
-        right: 10px;
-        bottom: 10px;
-      }
+      .tile-img { height: 200px; }
+      .tile { padding: 20px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- 상단 유틸리티 바 -->
-  <div class="top-bar">
-    <div class="left-links">
-      <a href="#">Sign up for style news</a>
-      <a href="#">English ▾</a>
-    </div>
-    <div class="right-links">
-      <a href="#">Log in or Register</a>
-      <a href="#">Checkout</a>
-    </div>
-  </div>
-
   <div class="app-container">
-    <!-- 사이드바 (화면 줄어들면 상단 가로 바 스타일로 변경됨) -->
+    <!-- 1. 좌측 노란색 세로 사이드바 -->
     <aside class="sidebar">
-      <div class="brand-logo">
-        <svg viewBox="0 0 100 60" fill="#111">
-          <polygon points="0,60 50,0 100,60 50,40"/>
-        </svg>
-        <div>
-          <h2>HOTEL LAGO DI GARDA</h2>
-          <span>••••</span>
-        </div>
-      </div>
-
-      <nav class="main-nav">
+      <h1 class="logo">bhc.</h1>
+      <div class="menu-group">
+        <p class="menu-title">구매 등<br>링크 기능</p>
         <ul>
-          <li><a href="#">Hotel</a></li>
-          <li><a href="#">Facility</a></li>
-          <li><a href="#">Business</a></li>
-          <li><a href="#">Restaurant</a></li>
+          <li><a href="#">- 온라인 주문</a></li>
+          <li><a href="#">- E-쿠폰 등록</a></li>
+          <li><a href="#">- 매장 찾기</a></li>
+          <li><a href="#">- 이벤트 안내</a></li>
         </ul>
-      </nav>
-
-      <div class="sidebar-footer">
-        <div class="links"><a href="#">ABOUT</a> | <a href="#">CONTACT</a></div>
-        <div class="socials">
-          <span>f</span>
-          <span>t</span>
-          <span>+</span>
-        </div>
       </div>
     </aside>
 
-    <!-- 우측 그리드 레이아웃 -->
+    <!-- 2. 우측 치킨 그리드 (화면 전체 100vh 꽉 차게) -->
     <main class="main-content">
 
-      <!-- 첫 번째 줄 -->
-      <div class="grid-row">
-        <div class="tile w-60 bg-img" style="background-image: url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80');">
-          <h1 class="hero-title">Maldives</h1>
-        </div>
-        <div class="tile w-40 bg-white">
-          <h3>A Whole New World</h3>
-          <p>I can show you the world. Shining, shimmering, splendid. Tell me when you decide let me be in your heart.</p>
+      <!-- 메인 브랜드 섹션 (60% : 40%) -->
+      <div class="grid-row row-hero">
+        <!-- 메인 사진 경로 바꾸는 곳 -->
+        <div class="tile tile-img w-60" style="background-image: url('images/main.jpg');"></div>
+        <div class="tile w-40">
+          <h2>BHC 브랜드</h2>
+          <p class="desc">바삭함의 정석, BHC 대표 치킨 시리즈</p>
         </div>
       </div>
 
-      <!-- 두 번째 줄 -->
-      <div class="grid-row">
-        <div class="tile w-35 bg-img" style="background-image: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80');"></div>
-        <div class="tile w-25 bg-white">
-          <h3>A Dazzling Place</h3>
-          <p>I can show you the world. Shining, shimmering, splendid.</p>
+      <!-- 후라이드 치킨 섹션 (50% : 50%) -->
+      <div class="grid-row row-item">
+        <!-- 후라이드 사진 경로 바꾸는 곳 -->
+        <div class="tile tile-img w-50" style="background-image: url('images/fried.png');"></div>
+        <div class="tile w-50">
+          <h3>후라이드 치킨</h3>
+          <p class="price">20,000원</p>
+          <p class="desc">고소하고 바삭한 BHC 대표 기본 후라이드</p>
         </div>
-        <div class="tile w-25 bg-light-blue">
-          <h3>Reservation</h3>
-        </div>
-        <div class="tile w-15 bg-img" style="background-image: url('https://images.unsplash.com/photo-1512100356356-de1b84283e18?auto=format&fit=crop&w=600&q=80');"></div>
       </div>
 
-      <!-- 세 번째 줄 -->
-      <div class="grid-row">
-        <div class="tile w-35 bg-img" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80');"></div>
-        <div class="tile w-25 bg-white">
-          <h3>Hot spot</h3>
-          <p>A best place to have a vacation tell me when you</p>
+      <!-- 양념 치킨 섹션 (50% : 50%) -->
+      <div class="grid-row row-item">
+        <!-- 양념 치킨 사진 경로 바꾸는 곳 -->
+        <div class="tile tile-img w-50" style="background-image: url('images/yangnyeom.jpg');"></div>
+        <div class="tile w-50">
+          <h3>양념 치킨</h3>
+          <p class="price">21,000원</p>
+          <p class="desc">매콤달콤 특제 양념 소스의 조합</p>
         </div>
-        <div class="tile w-40 bg-img" style="background-image: url('https://images.unsplash.com/photo-1439066615861-d1af74d74000?auto=format&fit=crop&w=1000&q=80');"></div>
+      </div>
+
+      <!-- 뿌링클 치킨 섹션 (50% : 50%) -->
+      <div class="grid-row row-item">
+        <!-- 뿌링클 치킨 사진 경로 바꾸는 곳 -->
+        <div class="tile tile-img w-50" style="background-image: url('images/bburing.jpg');"></div>
+        <div class="tile w-50">
+          <h3>뿌링클 치킨</h3>
+          <p class="price">21,000원</p>
+          <p class="desc">시즈닝과 뿌링뿌링 소스의 시그니처 대표 메뉴</p>
+        </div>
       </div>
 
     </main>
