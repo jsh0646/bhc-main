@@ -23,7 +23,7 @@
       color: inherit;
     }
 
-    /* 화면 전체를 왼쪽부터 꽉 차게 레이아웃 잡기 */
+    /* 화면 전체를 왼쪽 끝부터 꽉 차게 레이아웃 잡기 */
     .app-container {
       display: flex;
       width: 100vw;
@@ -79,7 +79,7 @@
       color: #e60012;
     }
 
-    /* 우측 메인 그리드 영역 (화면 남은 너비 꽉 채움) */
+    /* 우측 메인 그리드 영역 (남은 공간 꽉 채움) */
     .main-content {
       flex: 1;
       height: 100vh;
@@ -112,7 +112,7 @@
       background-repeat: no-repeat;
     }
 
-    /* 비율 분할 */
+    /* 비율 분할 (PC 기준) */
     .w-60 { width: 60%; }
     .w-50 { width: 50%; }
     .w-40 { width: 40%; }
@@ -141,7 +141,7 @@
       line-height: 1.5;
     }
 
-    /* 반응형 구조 (화면 줄어들 때) */
+    /* 반응형 구조 (몰디브 사이트 방식: 화면 줄어들 때 변형) */
     @media (max-width: 1024px) {
       html, body { height: auto; }
       .app-container {
@@ -186,7 +186,7 @@
 <body>
 
   <div class="app-container">
-    <!-- 1. 좌측 고정 사이드바 -->
+    <!-- 1. 좌측 노란색 세로 사이드바 -->
     <aside class="sidebar">
       <h1 class="logo">bhc.</h1>
       <div class="menu-group">
@@ -200,21 +200,21 @@
       </div>
     </aside>
 
-    <!-- 2. 우측 그리드 (사진+텍스트) -->
+    <!-- 2. 우측 그리드 (images 폴더 내 파일 연결) -->
     <main class="main-content">
 
-      <!-- 메인 BHC 섹션 -->
+      <!-- 메인 BHC 브랜드 섹션 (60% : 40%) -->
       <div class="grid-row row-hero">
-        <div class="tile tile-img w-60" style="background-image: url('https://i.namu.wiki/i/3wkCIRUPWfaM9xJGCZLa8ajpnKqBHyBcnR1msxU0MBkYHbzOTapQCzTg44SsGfWkcTmU73iPh6KGgbtyDLpK9WAirbL93hfukYx2XttGXYZkMIoT0I3fmAu-rH5e9XdoBBeoXreKPWm6RTUunce1gQ');"></div>
+        <div class="tile tile-img w-60" style="background-image: url('images/main.jpg');"></div>
         <div class="tile w-40">
           <h2>BHC 브랜드</h2>
           <p class="desc">바삭함의 정석, BHC 대표 치킨 시리즈</p>
         </div>
       </div>
 
-      <!-- 후라이드 치킨 섹션 -->
+      <!-- 후라이드 치킨 섹션 (50% : 50%) -->
       <div class="grid-row row-item">
-        <div class="tile tile-img w-50" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8cKDm6_EZiZa6vxkLshNwKU5o6sDmbCP1VFsDprdG4A&s');"></div>
+        <div class="tile tile-img w-50" style="background-image: url('images/fried.png');"></div>
         <div class="tile w-50">
           <h3>후라이드 치킨</h3>
           <p class="price">20,000원</p>
@@ -222,9 +222,9 @@
         </div>
       </div>
 
-      <!-- 양념 치킨 섹션 -->
+      <!-- 양념 치킨 섹션 (50% : 50%) -->
       <div class="grid-row row-item">
-        <div class="tile tile-img w-50" style="background-image: url('https://home-img.bhc.co.kr/bhc/product/20261021_132257_d08db35a');"></div>
+        <div class="tile tile-img w-50" style="background-image: url('images/yangnyeom.jpg');"></div>
         <div class="tile w-50">
           <h3>양념 치킨</h3>
           <p class="price">21,000원</p>
@@ -232,9 +232,9 @@
         </div>
       </div>
 
-      <!-- 뿌링클 치킨 섹션 -->
+      <!-- 뿌링클 치킨 섹션 (50% : 50%) -->
       <div class="grid-row row-item">
-        <div class="tile tile-img w-50" style="background-image: url('https://home-img.bhc.co.kr/bhc/product/20260708_115430_3e7550e7');"></div>
+        <div class="tile tile-img w-50" style="background-image: url('images/bburing.jpg');"></div>
         <div class="tile w-50">
           <h3>뿌링클 치킨</h3>
           <p class="price">21,000원</p>
