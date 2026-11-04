@@ -23,18 +23,18 @@
       color: inherit;
     }
 
-    /* 2. 전체 앱 컨테이너 (화면 높이 100% 채움) */
+    /* 2. 전체 앱 컨테이너 */
     .app-container {
       display: flex;
       width: 100vw;
       height: 100vh;
     }
 
-    /* 3. 좌측 고정 사이드바 (노란색 세로 배치) */
+    /* 3. 좌측 고정 사이드바 (노란색) */
     .sidebar {
       width: 220px;
       height: 100%;
-      background-color: #ffff00; /* BHC 노란색 */
+      background-color: #ffff00;
       padding: 30px 20px;
       display: flex;
       flex-direction: column;
@@ -77,7 +77,7 @@
       color: #e60012;
     }
 
-    /* 4. 우측 메인 그리드 영역 (화면 높이 100% 분할) */
+    /* 4. 우측 메인 그리드 */
     .main-content {
       flex: 1;
       height: 100%;
@@ -85,18 +85,15 @@
       flex-direction: column;
     }
 
-    /* 각 행(Row) - 높이 비율 분할 */
     .grid-row {
       display: flex;
       width: 100%;
       border-bottom: 1px solid #eee;
     }
     
-    /* PC 전체 화면 기준 행 높이 배분 */
     .row-hero { height: 28%; }
     .row-item { height: 24%; }
 
-    /* 타일 공통 스타일 */
     .tile {
       display: flex;
       flex-direction: column;
@@ -106,18 +103,15 @@
       overflow: hidden;
     }
 
-    /* 이미지 타일 */
     .tile-img {
       background-size: cover;
       background-position: center;
     }
 
-    /* 비율 클래스 */
     .w-60 { width: 60%; }
     .w-50 { width: 50%; }
     .w-40 { width: 40%; }
 
-    /* 텍스트 스타일 */
     .tile h2 {
       font-size: 26px;
       color: #111;
@@ -142,7 +136,7 @@
       line-height: 1.5;
     }
 
-    /* 5. 반응형 미디어 쿼리 (창 크기 변동 시) */
+    /* 5. 반응형 미디어 쿼리 */
     @media (max-width: 1024px) {
       html, body { height: auto; }
       .app-container {
@@ -187,7 +181,7 @@
 <body>
 
   <div class="app-container">
-    <!-- 1. 좌측 노란색 세로 사이드바 -->
+    <!-- 좌측 노란색 세로 사이드바 -->
     <aside class="sidebar">
       <h1 class="logo">bhc.</h1>
       <div class="menu-group">
@@ -201,12 +195,11 @@
       </div>
     </aside>
 
-    <!-- 2. 우측 치킨 그리드 (화면 전체 100vh 꽉 차게) -->
+    <!-- 우측 치킨 그리드 -->
     <main class="main-content">
 
-      <!-- 메인 브랜드 섹션 (60% : 40%) -->
+      <!-- 메인 브랜드 섹션 -->
       <div class="grid-row row-hero">
-        <!-- 메인 사진 경로 바꾸는 곳 -->
         <div class="tile tile-img w-60" style="background-image: url('images/main.jpg');"></div>
         <div class="tile w-40">
           <h2>BHC 브랜드</h2>
@@ -214,9 +207,8 @@
         </div>
       </div>
 
-      <!-- 후라이드 치킨 섹션 (50% : 50%) -->
+      <!-- 후라이드 치킨 섹션 -->
       <div class="grid-row row-item">
-        <!-- 후라이드 사진 경로 바꾸는 곳 -->
         <div class="tile tile-img w-50" style="background-image: url('images/fried.png');"></div>
         <div class="tile w-50">
           <h3>후라이드 치킨</h3>
@@ -225,9 +217,8 @@
         </div>
       </div>
 
-      <!-- 양념 치킨 섹션 (50% : 50%) -->
+      <!-- 양념 치킨 섹션 -->
       <div class="grid-row row-item">
-        <!-- 양념 치킨 사진 경로 바꾸는 곳 -->
         <div class="tile tile-img w-50" style="background-image: url('images/yangnyeom.jpg');"></div>
         <div class="tile w-50">
           <h3>양념 치킨</h3>
@@ -236,9 +227,8 @@
         </div>
       </div>
 
-      <!-- 뿌링클 치킨 섹션 (50% : 50%) -->
+      <!-- 뿌링클 치킨 섹션 -->
       <div class="grid-row row-item">
-        <!-- 뿌링클 치킨 사진 경로 바꾸는 곳 -->
         <div class="tile tile-img w-50" style="background-image: url('images/bburing.jpg');"></div>
         <div class="tile w-50">
           <h3>뿌링클 치킨</h3>
