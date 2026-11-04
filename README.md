@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BHC 브랜드 페이지</title>
   <style>
-    /* 1. 기본 스타일 */
+    /* 1. 기본 스타일 - 왼쪽 여백 및 중앙 정렬 여백 제거 */
     * {
       margin: 0;
       padding: 0;
@@ -23,14 +23,17 @@
       color: inherit;
     }
 
-    /* 2. 전체 앱 컨테이너 */
+    /* 2. 전체 컨테이너 - 왼쪽부터 꽉 차게 정렬 */
     .app-container {
       display: flex;
       width: 100vw;
       height: 100vh;
+      margin: 0;
+      padding: 0;
+      justify-content: flex-start; /* 왼쪽부터 시작하도록 고정 */
     }
 
-    /* 3. 좌측 고정 사이드바 (노란색) */
+    /* 3. 좌측 노란색 사이드바 - 왼쪽 끝에 고정 */
     .sidebar {
       width: 220px;
       height: 100%;
@@ -136,7 +139,7 @@
       line-height: 1.5;
     }
 
-    /* 5. 반응형 미디어 쿼리 */
+    /* 5. 반응형 미디어 쿼리 (화면 줄어들 때만 동작) */
     @media (max-width: 1024px) {
       html, body { height: auto; }
       .app-container {
