@@ -1,160 +1,134 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Noto Sans KR', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-html, body {
-    width: 100%;
-    height: 100%;
-    background-color: #ffffff;
+body {
+  display: flex;
+  font-family: 'Noto Sans KR', sans-serif;
+  min-height: 100vh;
 }
 
-/* 전체 화면을 감싸는 Flex 프레임 */
-.wrapper {
-    display: flex;
-    width: 100%;
-    min-height: 100vh;
-}
-
-/* 1. 좌측 15% 사이드바 */
+/* 1. 사이드바 스타일 */
 .sidebar {
-    width: 15%;
-    min-width: 160px;
-    background-color: #ffff00; /* 도면의 노란색 */
-    border-right: 2px solid #000;
-    padding: 20px 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 200px;
+  background-color: #ffff00; /* 노란색 배경 */
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
 }
 
-.sidebar .logo {
-    font-size: 2.2rem;
-    font-weight: 900;
-    color: #d2232a;
-    margin-bottom: 15px;
+.logo {
+  color: red;
+  font-size: 28px;
+  margin-bottom: 20px;
 }
 
-.sidebar .logo span {
-    color: #000;
+.menu-title {
+  font-weight: bold;
+  margin-bottom: 15px;
+  line-height: 1.4;
 }
 
-.side-title {
-    font-size: 1rem;
-    font-weight: bold;
-    margin-bottom: 25px;
-    text-align: center;
+.sidebar ul {
+  list-style: none;
 }
 
-.nav-menu ul {
-    list-style: none;
-    padding: 0;
+.sidebar ul li {
+  margin-bottom: 12px;
 }
 
-.nav-menu li {
-    margin-bottom: 15px;
-    text-align: center;
+.sidebar ul li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
 }
 
-.nav-menu a {
-    text-decoration: none;
-    color: #000;
-    font-weight: bold;
-    font-size: 0.95rem;
-}
-
-/* 2. 우측 85% 메인 콘텐츠 */
+/* 2. 메인 콘텐츠 스타일 */
 .main-content {
-    width: 85%;
-    display: flex;
-    flex-direction: column;
+  margin-left: 20px; /* 사이드바 너비만큼 띄움 */
+  flex: 1;
 }
 
-/* Row (행): 안의 자식 컬럼 요소들을 가로(Horizontal)로 강제 배치 */
-.row {
-    display: flex;
-    width: 100%;
-    border-bottom: 1px solid #000;
+/* 메인 브랜드 (6:4) */
+.brand-hero {
+  display: flex;
+  height: 250px;
 }
 
-.row-hero {
-    height: 300px; /* 메인 배너 높이 */
+.hero-img {
+  width: 60%;
+  background-color: #8B3A10; /* 이미지 영역 임시 색상 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
 }
 
-.row-item {
-    height: 220px; /* 각 치킨 메뉴 높이 */
-}
-
-/* 비율별 가로 폭(Width) 설정 - flex-shrink: 0 으로 줄바꿈 방지 */
-.w-60 { width: 60%; flex-shrink: 0; }
-.w-50 { width: 50%; flex-shrink: 0; }
-.w-40 { width: 40%; flex-shrink: 0; }
-
-/* 공통 Column(열) 박스 */
-.col {
-    position: relative;
-    height: 100%;
-    border-right: 1px solid #000;
-    box-sizing: border-box;
-    overflow: hidden;
-}
-
-.col:last-child {
-    border-right: none;
-}
-
-/* 이미지 컬럼 스타일 */
-.image-col img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* 이미지가 박스 비율에 맞춰 가득 참 */
-    display: block;
-}
-
-/* 사진 위 인디케이터 라벨 */
-.label {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    background: rgba(0, 0, 0, 0.7);
-    color: #fff;
-    font-size: 0.8rem;
-    padding: 4px 8px;
-    border-radius: 3px;
-}
-
-/* 텍스트 컬럼 스타일 */
-.text-col {
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: #fff;
+.hero-text {
+  width: 40%;
+  padding: 30px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-bottom: 1px solid #ddd;
 }
 
 .hero-text h2 {
-    font-size: 1.8rem;
-    font-weight: 900;
-    margin-bottom: 10px;
+  font-size: 24px;
+  margin-bottom: 10px;
 }
 
-.text-col h3 {
-    font-size: 1.4rem;
-    font-weight: bold;
-    margin-bottom: 5px;
+.hero-text p {
+  color: #666;
+  font-size: 14px;
 }
 
-.text-col .price {
-    color: #d2232a;
-    font-weight: bold;
-    font-size: 1.1rem;
-    margin-bottom: 10px;
+/* 메뉴 카드 (5:5) */
+.menu-card {
+  display: flex;
+  height: 200px;
+  border-bottom: 1px solid #ddd;
 }
 
-.text-col p {
-    color: #555;
-    font-size: 0.95rem;
-    line-height: 1.4;
+.card-img {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.img-fried { background-color: #D96B27; }
+.img-yangnyeom { background-color: #B22222; }
+.img-bburing { background-color: #FF8C00; }
+
+.card-text {
+  width: 50%;
+  padding: 30px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-text h3 {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.card-text .price {
+  color: #ff4d4d;
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.card-text .desc {
+  color: #666;
+  font-size: 13px;
 }
