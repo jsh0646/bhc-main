@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BHC 치킨 - 맛있는 즐거움이 가득한 곳</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter & Noto Sans KR -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bhc: {
+                            yellow: '#FFB800',
+                            gold: '#FFA800',
+                            dark: '#18181B',
+                            red: '#E53E3E',
+                            lightBg: '#FFFDF5',
+                            cardBg: '#FAFAFA'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans KR', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #FFFDF5;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #18181B 0%, #27272A 50%, #3F3F46 100%);
+        }
+        .text-glow {
+            text-shadow: 0 2px 10px rgba(255, 184, 0, 0.4);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FFFDF5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #FFB800;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FFA800;
+        }
+    </style>
+</head>
+<body class="text-gray-800 flex flex-col min-h-screen">
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-yellow-100 shadow-sm transition-all duration-300" id="header">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="flex items-center gap-2 group">
+                        <span class="bg-bhc-yellow text-bhc-dark font-black text-2xl px-3 py-1 rounded-xl shadow-md group-hover:scale-105 transition-transform duration-200">bhc</span>
+                        <span class="text-bhc-dark font-bold text-xl tracking-tight hidden sm:inline-block">CHICKEN</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation Menu -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#hero" class="text-gray-900 font-semibold hover:text-bhc-yellow transition-colors duration-200 py-2 border-b-2 border-transparent hover:border-bhc-yellow">홈</a>
+                    <a href="#menu" class="text-gray-600 font-medium hover:text-bhc-yellow transition-colors duration-200 py-2 border-b-2 border-transparent hover:border-bhc-yellow">전체메뉴</a>
+                    <a href="#store-finder" class="text-gray-600 font-medium hover:text-bhc-yellow transition-colors duration-200 py-2 border-b-2 border-transparent hover:border-bhc-yellow">매장찾기</a>
+                    <a href="#events" class="text-gray-600 font-medium hover:text-bhc-yellow transition-colors duration-200 py-2 border-b-2 border-transparent hover:border-bhc-yellow">이벤트</a>
+                </nav>
+
+                <!-- Actions: Cart Button & Mobile Menu Toggle -->
+                <div class="flex items-center gap-4">
+                    <button id="cart-btn" class="relative bg-bhc-dark text-white p-2.5 sm:px-4 sm:py-2.5 rounded-full hover:bg-black transition-all duration-200 flex items-center gap-2 shadow-md hover:shadow-lg">
+                        <i class="fa-solid fa-cart-shopping text-bhc-yellow text-lg"></i>
+                        <span class="hidden sm:inline text-sm font-semibold">장바구니</span>
+                        <span id="cart-count" class="bg-bhc-yellow text-bhc-dark text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span>
+                    </button>
+
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" type="button" class="md:hidden p-2 rounded-lg text-gray-700 hover:text-bhc-dark hover:bg-gray-100 focus:outline-none" aria-label="Toggle Menu">
+                        <i class="fa-solid fa-bars text-2xl" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu Dropdown -->
+        <div class="hidden md:hidden bg-white border-b border-gray-200 shadow-xl" id="mobile-menu">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#hero" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-semibold text-gray-900 hover:bg-amber-50 hover:text-bhc-gold">홈</a>
+                <a href="#menu" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-medium text-gray-700 hover:bg-amber-50 hover:text-bhc-gold">전체메뉴</a>
+                <a href="#store-finder" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-medium text-gray-700 hover:bg-amber-50 hover:text-bhc-gold">매장찾기</a>
+                <a href="#events" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-medium text-gray-700 hover:bg-amber-50 hover:text-bhc-gold">이벤트</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section id="hero" class="hero-gradient text-white relative overflow-hidden py-16 lg:py-24">
+            <div class="absolute -right-20 -bottom-20 w-96 h-96 bg-bhc-yellow/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -left-20 -top-20 w-96 h-96 bg-bhc-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Hero Text Content -->
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-bhc-yellow/20 border border-bhc-yellow/30 text-bhc-yellow text-sm font-semibold">
+                            <i class="fa-solid fa-crown"></i> BHC 시그니처 대표 메뉴
+                        </div>
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight">
+                            세상을 사로잡은 <br class="hidden sm:inline">
+                            <span class="text-bhc-yellow text-glow">바삭함과 달콤함</span>의 조화!
+                        </h1>
+                        <p class="text-gray-300 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 font-light">
+                            bhc 치킨의 시그니처 시즈닝 '뿌링클'부터 깊은 풍미의 '맛초킹'까지! 오늘 저녁, 당신의 입맛을 사로잡을 맛있는 즐거움을 주문해보세요.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
+                            <a href="#menu" class="bg-bhc-yellow text-bhc-dark font-bold px-8 py-4 rounded-full shadow-lg hover:bg-bhc-gold hover:shadow-bhc-yellow/30 hover:shadow-2xl transition-all duration-300 text-center transform hover:-translate-y-0.5">
+                                메뉴 바로가기 <i class="fa-solid fa-arrow-right ml-2"></i>
+                            </a>
+                            <a href="#store-finder" class="border-2 border-white/30 text-white font-semibold px-8 py-4 rounded-full hover:bg-white/10 hover:border-white transition-all duration-300 text-center">
+                                가까운 매장 찾기
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Hero Featured Cards (Carousel Preview) -->
+                    <div class="lg:col-span-5 relative">
+                        <div class="bg-white/10 backdrop-blur-md p-6 rounded-3xl border border-white/10 shadow-2xl relative">
+                            <span class="absolute -top-3 -right-3 bg-red-500 text-white text-xs font-black px-3 py-1.5 rounded-full shadow-md uppercase tracking-wider">Best seller</span>
+                            <div class="aspect-w-4 aspect-h-3 overflow-hidden rounded-2xl mb-4 bg-gray-800">
+                                <img id="hero-img" src="https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=800&q=80" alt="BHC 대표 치킨" class="w-full h-64 object-cover hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/800x600/FFB800/18181B?text=BHC+Chicken'">
+                            </div>
+                            <div class="flex justify-between items-end">
+                                <div>
+                                    <h3 id="hero-title" class="text-2xl font-bold text-white mb-1">뿌링클 (Bhurinkle)</h3>
+                                    <p id="hero-desc" class="text-gray-300 text-sm">갓 튀겨낸 바삭한 치킨에 블루치즈, 체다치즈 시즈닝 듬뿍</p>
+                                </div>
+                                <div class="text-right">
+                                    <span id="hero-price" class="text-2xl font-black text-bhc-yellow">21,000원</span>
+                                </div>
+                            </div>
+                            <div class="mt-6">
+                                <button onclick="addToCart({id: 101, name: '뿌링클', price: 21000, img: 'https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=800&q=80'})" class="w-full bg-bhc-yellow text-bhc-dark font-bold py-3 rounded-xl hover:bg-bhc-gold transition-colors duration-200">
+                                    <i class="fa-solid fa-plus mr-1"></i> 장바구니 담기
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Menu Section -->
+        <section id="menu" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-bhc-dark tracking-tight mb-3">BHC 대표 메뉴</h2>
+                <p class="text-gray-600">엄선된 신선한 재료와 BHC만의 특제 레시피로 만든 프리미엄 메뉴를 만나보세요.</p>
+            </div>
+
+            <!-- Category Filter Tabs -->
+            <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10">
+                <button class="filter-btn active bg-bhc-dark text-white font-semibold px-5 py-2.5 rounded-full text-sm transition-all shadow-md" data-category="all">
+                    전체 메뉴
+                </button>
+                <button class="filter-btn bg-white text-gray-700 hover:bg-gray-100 font-semibold px-5 py-2.5 rounded-full text-sm transition-all border border-gray-200" data-category="main">
+                    대표 메뉴
+                </button>
+                <button class="filter-btn bg-white text-gray-700 hover:bg-gray-100 font-semibold px-5 py-2.5 rounded-full text-sm transition-all border border-gray-200" data-category="fried">
+                    후라이드/양념
+                </button>
+                <button class="filter-btn bg-white text-gray-700 hover:bg-gray-100 font-semibold px-5 py-2.5 rounded-full text-sm transition-all border border-gray-200" data-category="special">
+                    특색 치킨
+                </button>
+                <button class="filter-btn bg-white text-gray-700 hover:bg-gray-100 font-semibold px-5 py-2.5 rounded-full text-sm transition-all border border-gray-200" data-category="side">
+                    사이드 메뉴
+                </button>
+            </div>
+
+            <!-- Menu Grid Container -->
+            <div id="menu-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Menu items generated via JavaScript -->
+            </div>
+        </section>
+
+        <!-- Store Finder Section -->
+        <section id="store-finder" class="bg-gray-900 text-white py-16 relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    
+                    <!-- Search Controls -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <div>
+                            <span class="text-bhc-yellow font-bold text-sm tracking-wider uppercase">Store Locator</span>
+                            <h2 class="text-3xl font-extrabold mt-1">우리 동네 BHC 매장 찾기</h2>
+                            <p class="text-gray-400 mt-2 text-sm">갓 튀긴 따뜻한 치킨을 빠르게 만나볼 수 있는 가까운 매장을 확인해 보세요.</p>
+                        </div>
+
+                        <!-- Search Box -->
+                        <div class="space-y-3">
+                            <div class="relative">
+                                <input type="text" id="store-search-input" placeholder="지역명 또는 매장명 입력 (예: 강남, 홍대)" class="w-full bg-gray-800 text-white placeholder-gray-500 pl-11 pr-4 py-3.5 rounded-xl border border-gray-700 focus:outline-none focus:border-bhc-yellow text-sm transition-colors">
+                                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                            </div>
+                            <button id="search-store-btn" class="w-full bg-bhc-yellow text-bhc-dark font-bold py-3.5 rounded-xl hover:bg-bhc-gold transition-colors text-sm shadow-md">
+                                매장 검색
+                            </button>
+                        </div>
+
+                        <!-- Store List Results -->
+                        <div id="store-list" class="space-y-3 max-h-72 overflow-y-auto pr-2">
+                            <!-- Store List Items Generated via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Mock Map Interface -->
+                    <div class="lg:col-span-7 bg-gray-800 rounded-2xl h-96 lg:h-[450px] relative overflow-hidden border border-gray-700 flex flex-col justify-between p-6">
+                        <div class="absolute inset-0 bg-cover bg-center opacity-40" style="background-image: url('https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=1200&q=80');"></div>
+                        <div class="relative z-10 flex justify-between items-start">
+                            <span class="bg-bhc-dark/90 backdrop-blur-md border border-gray-700 text-white text-xs px-3 py-1.5 rounded-full font-medium flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> 실시간 포장/배달 가능
+                            </span>
+                            <button onclick="resetMapView()" class="bg-gray-900/80 hover:bg-gray-900 text-white p-2 rounded-lg text-xs transition-colors">
+                                <i class="fa-solid fa-rotate-right mr-1"></i> 위치 초기화
+                            </button>
+                        </div>
+
+                        <!-- Map Marker Preview Card Overlay -->
+                        <div id="map-preview-card" class="relative z-10 bg-bhc-dark/95 backdrop-blur-md p-4 rounded-xl border border-bhc-yellow/30 max-w-sm shadow-xl transition-all duration-300 transform">
+                            <div class="flex items-start justify-between">
+                                <div>
+                                    <h4 id="map-store-name" class="font-bold text-bhc-yellow text-base">BHC 강남역점</h4>
+                                    <p id="map-store-address" class="text-xs text-gray-300 mt-1">서울 서초구 강남대로 391</p>
+                                    <p id="map-store-phone" class="text-xs text-gray-400 mt-1"><i class="fa-solid fa-phone text-bhc-yellow mr-1"></i>02-555-1234</p>
+                                </div>
+                                <span class="bg-bhc-yellow/20 text-bhc-yellow text-xs px-2 py-1 rounded font-bold">영업중</span>
+                            </div>
+                            <div class="mt-3 pt-3 border-t border-gray-800 flex gap-2">
+                                <button onclick="alert('배달 주문 서비스 준비 중입니다.')" class="flex-1 bg-bhc-yellow text-bhc-dark font-bold text-xs py-2 rounded hover:bg-bhc-gold transition-colors">
+                                    배달 주문
+                                </button>
+                                <button onclick="alert('전화연결: 02-555-1234')" class="flex-1 bg-gray-800 text-white font-medium text-xs py-2 rounded hover:bg-gray-700 transition-colors">
+                                    전화 문의
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Events & Promotion Section -->
+        <section id="events" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-10">
+                <div>
+                    <h2 class="text-3xl font-extrabold text-bhc-dark">진행 중인 이벤트</h2>
+                    <p class="text-gray-600 mt-1">BHC 치킨의 풍성한 할인 혜택과 이벤트를 확인하세요.</p>
+                </div>
+                <a href="#" onclick="alert('더 많은 이벤트 준비 중입니다.'); return false;" class="text-bhc-dark font-bold text-sm hover:text-bhc-gold mt-2 sm:mt-0 flex items-center">
+                    전체보기 <i class="fa-solid fa-chevron-right text-xs ml-1"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Event Card 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-300 group">
+                    <div class="h-48 overflow-hidden bg-amber-100 relative">
+                        <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80" alt="이벤트 이미지" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/FFB800/18181B?text=BHC+EVENT'">
+                        <span class="absolute top-3 left-3 bg-bhc-dark text-bhc-yellow text-xs font-bold px-3 py-1 rounded-full">신메뉴 프로모션</span>
+                    </div>
+                    <div class="p-5">
+                        <span class="text-xs text-gray-400 font-medium">2026.03.01 ~ 2026.03.31</span>
+                        <h3 class="font-bold text-lg text-bhc-dark mt-1 group-hover:text-bhc-gold transition-colors">뿌링클 사이드 세트 구매 시 3천원 할인!</h3>
+                        <p class="text-gray-600 text-sm mt-2 line-clamp-2">자사앱 첫 주문 고객 대상으로 뿌링치즈볼 포함 세트메뉴 특별 할인 쿠폰 증정</p>
+                    </div>
+                </div>
+
+                <!-- Event Card 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-300 group">
+                    <div class="h-48 overflow-hidden bg-amber-100 relative">
+                        <img src="https://images.unsplash.com/photo-1527477396000-e27163b481c2?auto=format&fit=crop&w=600&q=80" alt="이벤트 이미지" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/FFB800/18181B?text=BHC+EVENT'">
+                        <span class="absolute top-3 left-3 bg-bhc-yellow text-bhc-dark text-xs font-bold px-3 py-1 rounded-full">앱 한정 혜택</span>
+                    </div>
+                    <div class="p-5">
+                        <span class="text-xs text-gray-400 font-medium">2026.03.10 ~ 2026.04.15</span>
+                        <h3 class="font-bold text-lg text-bhc-dark mt-1 group-hover:text-bhc-gold transition-colors">BHC 공식 앱 리뉴얼 오픈 출석체크</h3>
+                        <p class="text-gray-600 text-sm mt-2 line-clamp-2">매일 앱 출석하면 사이드메뉴 무료 쿠폰 100% 당첨 이벤트 참여 가능</p>
+                    </div>
+                </div>
+
+                <!-- Event Card 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-300 group">
+                    <div class="h-48 overflow-hidden bg-amber-100 relative">
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&q=80" alt="이벤트 이미지" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/FFB800/18181B?text=BHC+EVENT'">
+                        <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full">주말 포장할인</span>
+                    </div>
+                    <div class="p-5">
+                        <span class="text-xs text-gray-400 font-medium">상시 진행</span>
+                        <h3 class="font-bold text-lg text-bhc-dark mt-1 group-hover:text-bhc-gold transition-colors">주말 방문 포장 4,000원 즉시 할인</h3>
+                        <p class="text-gray-600 text-sm mt-2 line-clamp-2">주말(토/일) 매장 방문 포장 주문 시 전 치킨 메뉴 4천원 할인 적용</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Cart Drawer Modal -->
+    <div id="cart-modal" class="fixed inset-0 z-50 invisible opacity-0 transition-opacity duration-300">
+        <!-- Backdrop -->
+        <div id="cart-backdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+
+        <!-- Drawer Panel -->
+        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-white shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300" id="cart-panel">
+                
+                <!-- Drawer Header -->
+                <div class="p-6 bg-bhc-dark text-white flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-bag-shopping text-bhc-yellow text-xl"></i>
+                        <h3 class="text-xl font-bold">장바구니</h3>
+                    </div>
+                    <button id="close-cart-btn" class="text-gray-400 hover:text-white p-2 rounded-lg">
+                        <i class="fa-solid fa-xmark text-xl"></i>
+                    </button>
+                </div>
+
+                <!-- Drawer Body (Item List) -->
+                <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4">
+                    <!-- Cart Items Inserted Dynamically -->
+                </div>
+
+                <!-- Drawer Footer -->
+                <div class="p-6 border-t border-gray-200 bg-gray-50 space-y-4">
+                    <div class="space-y-1.5">
+                        <div class="flex justify-between text-sm text-gray-600">
+                            <span>상품 주문금액</span>
+                            <span id="cart-subtotal">0원</span>
+                        </div>
+                        <div class="flex justify-between text-sm text-gray-600">
+                            <span>배달팁</span>
+                            <span id="cart-delivery">3,000원</span>
+                        </div>
+                        <div class="flex justify-between text-lg font-black text-bhc-dark pt-2 border-t border-gray-200">
+                            <span>총 결제금액</span>
+                            <span id="cart-total" class="text-bhc-gold">0원</span>
+                        </div>
+                    </div>
+                    <button onclick="checkout()" class="w-full bg-bhc-yellow text-bhc-dark font-black py-4 rounded-xl hover:bg-bhc-gold transition-colors text-center text-base shadow-lg">
+                        주문하기
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-bhc-dark text-white px-5 py-3.5 rounded-xl shadow-2xl flex items-center gap-3 border border-bhc-yellow/40 transform translate-y-20 opacity-0 transition-all duration-300">
+        <i class="fa-solid fa-circle-check text-bhc-yellow text-lg"></i>
+        <span id="toast-message" class="text-sm font-medium">장바구니에 메뉴가 추가되었습니다.</span>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-bhc-dark text-gray-400 pt-12 pb-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <!-- Col 1 -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-2">
+                        <span class="bg-bhc-yellow text-bhc-dark font-black text-xl px-2.5 py-0.5 rounded-lg">bhc</span>
+                        <span class="text-white font-bold text-lg">CHICKEN</span>
+                    </div>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        (주)BHC | 대표이사: 대표자명<br>
+                        사업자등록번호: 120-86-00000<br>
+                        서울특별시 송파구 올림픽로 300
+                    </p>
+                </div>
+                <!-- Col 2 -->
+                <div>
+                    <h4 class="text-white font-bold text-sm mb-3">고객센터</h4>
+                    <p class="text-2xl font-black text-bhc-yellow mb-1">1577-5577</p>
+                    <p class="text-xs text-gray-400">운영시간: 12:00 ~ 23:00 (연중무휴)</p>
+                </div>
+                <!-- Col 3 -->
+                <div>
+                    <h4 class="text-white font-bold text-sm mb-3">메뉴 및 서비스</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#menu" class="hover:text-bhc-yellow transition-colors">추천 시그니처 메뉴</a></li>
+                        <li><a href="#store-finder" class="hover:text-bhc-yellow transition-colors">매장 위치 및 연락처</a></li>
+                        <li><a href="#events" class="hover:text-bhc-yellow transition-colors">이벤트 및 제휴 혜택</a></li>
+                    </ul>
+                </div>
+                <!-- Col 4 -->
+                <div>
+                    <h4 class="text-white font-bold text-sm mb-3">공식 SNS</h4>
+                    <div class="flex space-x-3">
+                        <a href="#" class="w-9 h-9 rounded-full bg-gray-800 hover:bg-bhc-yellow hover:text-bhc-dark text-white flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-gray-800 hover:bg-bhc-yellow hover:text-bhc-dark text-white flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-gray-800 hover:bg-bhc-yellow hover:text-bhc-dark text-white flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-gray-800 text-center text-xs text-gray-500">
+                <p>&copy; 2026 BHC Chicken. All rights reserved. 본 웹사이트는 포트폴리오 및 데모 목적으로 제작되었습니다.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Data and Interactivity -->
+    <script>
+        // Sample BHC Menu Dataset
+        const menuItems = [
+            {
+                id: 1,
+                name: "뿌링클",
+                category: "main",
+                price: 21000,
+                desc: "갓 튀겨낸 바삭한 치킨에 블루치즈, 체다치즈, 양파, 마늘이 함유된 뿌링뿌링 시즈닝을 입힌 인기 치킨",
+                img: "https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=600&q=80",
+                badge: "대표"
+            },
+            {
+                id: 2,
+                name: "맛초킹",
+                category: "main",
+                price: 21000,
+                desc: "숙성 간장과 꿀이 어우러진 알싸한 흑마늘 퐁당 소스에 홍고추와 청양고추가 어우러진 콤비네이션",
+                img: "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=600&q=80",
+                badge: "인기"
+            },
+            {
+                id: 3,
+                name: "골드킹",
+                category: "special",
+                price: 20000,
+                desc: "깊은 맛의 숙성 간장과 달콤한 꿀, 알싸한 마늘의 비율로 탄생한 환상적인 맛의 정점",
+                img: "https://images.unsplash.com/photo-1567620832903-9fc6debc209f?auto=format&fit=crop&w=600&q=80",
+                badge: "추천"
+            },
+            {
+                id: 4,
+                name: "해바라기 후라이드",
+                category: "fried",
+                price: 18000,
+                desc: "해바라기유로 튀겨내 고소하고 깔끔한 맛이 일품인 기본에 충실한 클래식 후라이드",
+                img: "https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=600&q=80",
+                badge: "기본"
+            },
+            {
+                id: 5,
+                name: "양념치킨",
+                category: "fried",
+                price: 19500,
+                desc: "매콤 달콤한 특제 양념 소스를 만난 남녀노소 모두가 사랑하는 추억의 양념치킨",
+                img: "https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 6,
+                name: "RedKing (레드킹)",
+                category: "special",
+                price: 21000,
+                desc: "화끈한 핫 칠리 페퍼와 홍고추로 매운 맛의 진수를 보여주는 강렬한 매운맛 치킨",
+                img: "https://images.unsplash.com/photo-1608039829572-78524f79c4c7?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 7,
+                name: "뿌링치즈볼 (5개)",
+                category: "side",
+                price: 6000,
+                desc: "겉은 바삭, 속은 쫄깃한 찹쌀 치즈볼에 뿌링클 시즈닝이 가득 묻어있는 사이드 메뉴",
+                img: "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&w=600&q=80",
+                badge: "MUST BUY"
+            },
+            {
+                id: 8,
+                name: "달콤바삭 치즈볼 (5개)",
+                category: "side",
+                price: 5500,
+                desc: "바삭한 튀김옷 속에 달콤하고 짭조름한 모짜렐라 치즈가 듬뿍 들어간 원조 치즈볼",
+                img: "https://images.unsplash.com/photo-1585325701165-351af916e581?auto=format&fit=crop&w=600&q=80"
+            }
+        ];
+
+        // Sample Store Dataset
+        const storeData = [
+            { id: 1, name: "BHC 강남역점", address: "서울 서초구 강남대로 391", phone: "02-555-1234", dist: "0.3km" },
+            { id: 2, name: "BHC 홍대입구점", address: "서울 마포구 어울마당로 112", phone: "02-333-5678", dist: "1.2km" },
+            { id: 3, name: "BHC 여의도점", address: "서울 영등포구 여의대방로 379", phone: "02-780-9988", dist: "2.5km" },
+            { id: 4, name: "BHC 판교역점", address: "경기 성남시 분당구 판교역로 146", phone: "031-707-1122", dist: "4.1km" }
+        ];
+
+        // State Management
+        let cart = [];
+
+        // DOM Elements Initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            renderMenu('all');
+            renderStores(storeData);
+            setupEventListeners();
+        });
+
+        // Render Menu Items
+        function renderMenu(category) {
+            const menuGrid = document.getElementById('menu-grid');
+            menuGrid.innerHTML = '';
+
+            const filteredItems = category === 'all' 
+                ? menuItems 
+                : menuItems.filter(item => item.category === category);
+
+            filteredItems.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group';
+                
+                card.innerHTML = `
+                    <div>
+                        <div class="relative overflow-hidden bg-gray-100 h-52">
+                            <img src="${item.img}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/FFB800/18181B?text=BHC+Chicken'">
+                            ${item.badge ? `<span class="absolute top-3 left-3 bg-bhc-yellow text-bhc-dark text-xs font-black px-2.5 py-1 rounded-md shadow">${item.badge}</span>` : ''}
+                        </div>
+                        <div class="p-5">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-extrabold text-lg text-bhc-dark group-hover:text-bhc-gold transition-colors">${item.name}</h3>
+                                <span class="font-black text-bhc-dark text-base">${item.price.toLocaleString()}원</span>
+                            </div>
+                            <p class="text-gray-500 text-xs leading-relaxed line-clamp-2 mb-4">${item.desc}</p>
+                        </div>
+                    </div>
+                    <div class="px-5 pb-5 pt-0">
+                        <button onclick="addToCartById(${item.id})" class="w-full bg-gray-50 hover:bg-bhc-yellow hover:text-bhc-dark text-gray-800 border border-gray-200 font-bold py-2.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-2 text-sm">
+                            <i class="fa-solid fa-cart-plus"></i> 담기
+                        </button>
+                    </div>
+                `;
+                menuGrid.appendChild(card);
+            });
+        }
+
+        // Setup Event Listeners
+        function setupEventListeners() {
+            // Mobile Menu Toggle
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                if (mobileMenu.classList.contains('hidden')) {
+                    menuIcon.className = 'fa-solid fa-bars text-2xl';
+                } else {
+                    menuIcon.className = 'fa-solid fa-xmark text-2xl';
+                }
+            });
+
+            // Close Mobile Menu on Link Click
+            document.querySelectorAll('.mobile-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.className = 'fa-solid fa-bars text-2xl';
+                });
+            });
+
+            // Category Filter Buttons
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    filterBtns.forEach(b => {
+                        b.className = 'filter-btn bg-white text-gray-700 hover:bg-gray-100 font-semibold px-5 py-2.5 rounded-full text-sm transition-all border border-gray-200';
+                    });
+                    e.target.className = 'filter-btn active bg-bhc-dark text-white font-semibold px-5 py-2.5 rounded-full text-sm transition-all shadow-md';
+                    const cat = e.target.getAttribute('data-category');
+                    renderMenu(cat);
+                });
+            });
+
+            // Cart Drawer Controls
+            const cartBtn = document.getElementById('cart-btn');
+            const closeCartBtn = document.getElementById('close-cart-btn');
+            const cartBackdrop = document.getElementById('cart-backdrop');
+
+            cartBtn.addEventListener('click', openCart);
+            closeCartBtn.addEventListener('click', closeCart);
+            cartBackdrop.addEventListener('click', closeCart);
+
+            // Store Search Filter
+            const searchInput = document.getElementById('store-search-input');
+            const searchBtn = document.getElementById('search-store-btn');
+
+            const handleSearch = () => {
+                const query = searchInput.value.trim().toLowerCase();
+                if(!query) {
+                    renderStores(storeData);
+                    return;
+                }
+                const filtered = storeData.filter(s => s.name.toLowerCase().includes(query) || s.address.toLowerCase().includes(query));
+                renderStores(filtered);
+            };
+
+            searchBtn.addEventListener('click', handleSearch);
+            searchInput.addEventListener('keyup', (e) => {
+                if(e.key === 'Enter') handleSearch();
+            });
+        }
+
+        // Cart Drawer Handlers
+        function openCart() {
+            const modal = document.getElementById('cart-modal');
+            const panel = document.getElementById('cart-panel');
+            modal.classList.remove('invisible', 'opacity-0');
+            modal.classList.add('opacity-100');
+            panel.classList.remove('translate-x-full');
+        }
+
+        function closeCart() {
+            const modal = document.getElementById('cart-modal');
+            const panel = document.getElementById('cart-panel');
+            panel.classList.add('translate-x-full');
+            setTimeout(() => {
+                modal.classList.add('invisible', 'opacity-0');
+                modal.classList.remove('opacity-100');
+            }, 250);
+        }
+
+        // Add Item to Cart Functionality
+        function addToCartById(id) {
+            const item = menuItems.find(m => m.id === id);
+            if (item) {
+                addToCart(item);
+            }
+        }
+
+        function addToCart(item) {
+            const existingIndex = cart.findIndex(c => c.id === item.id);
+            if (existingIndex > -1) {
+                cart[existingIndex].qty += 1;
+            } else {
+                cart.push({
+                    id: item.id,
+                    name: item.name,
+                    price: item.price,
+                    img: item.img,
+                    qty: 1
+                });
+            }
+            updateCartUI();
+            showToast(`'${item.name}' 메뉴가 장바구니에 담겼습니다.`);
+        }
+
+        function updateQuantity(id, change) {
+            const index = cart.findIndex(c => c.id === id);
+            if (index > -1) {
+                cart[index].qty += change;
+                if (cart[index].qty <= 0) {
+                    cart.splice(index, 1);
+                }
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const countElem = document.getElementById('cart-count');
+            const container = document.getElementById('cart-items-container');
+            const subtotalElem = document.getElementById('cart-subtotal');
+            const totalElem = document.getElementById('cart-total');
+
+            const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            const deliveryFee = subtotal > 0 ? 3000 : 0;
+            const grandTotal = subtotal + deliveryFee;
+
+            countElem.innerText = totalCount;
+            subtotalElem.innerText = subtotal.toLocaleString() + '원';
+            totalElem.innerText = grandTotal.toLocaleString() + '원';
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="h-full flex flex-col items-center justify-center text-center text-gray-400 py-12">
+                        <i class="fa-solid fa-basket-shopping text-5xl mb-3 text-gray-300"></i>
+                        <p class="font-medium text-sm">장바구니가 비어 있습니다.</p>
+                        <p class="text-xs text-gray-400 mt-1">맛있는 BHC 치킨을 추가해 보세요!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = '';
+            cart.forEach(item => {
+                const el = document.createElement('div');
+                el.className = 'flex items-center justify-between p-3 bg-gray-50 rounded-xl border border-gray-100';
+                el.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <img src="${item.img}" alt="${item.name}" class="w-14 h-14 object-cover rounded-lg" onerror="this.src='https://placehold.co/100?text=Chicken'">
+                        <div>
+                            <h4 class="font-bold text-sm text-bhc-dark">${item.name}</h4>
+                            <p class="text-xs font-bold text-gray-500">${(item.price * item.qty).toLocaleString()}원</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 bg-white px-2 py-1 rounded-lg border border-gray-200">
+                        <button onclick="updateQuantity(${item.id}, -1)" class="text-gray-500 hover:text-red-500 px-1 font-bold text-sm">-</button>
+                        <span class="text-xs font-bold w-4 text-center">${item.qty}</span>
+                        <button onclick="updateQuantity(${item.id}, 1)" class="text-gray-500 hover:text-bhc-gold px-1 font-bold text-sm">+</button>
+                    </div>
+                `;
+                container.appendChild(el);
+            });
+        }
+
+        // Show Toast Notification
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            toastMsg.innerText = msg;
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+                toast.classList.remove('translate-y-0', 'opacity-100');
+            }, 3000);
+        }
+
+        // Store List Render Function
+        function renderStores(stores) {
+            const listContainer = document.getElementById('store-list');
+            listContainer.innerHTML = '';
+
+            if(stores.length === 0) {
+                listContainer.innerHTML = '<p class="text-xs text-gray-400 text-center py-4">검색 조건에 일치하는 매장이 없습니다.</p>';
+                return;
+            }
+
+            stores.forEach(s => {
+                const div = document.createElement('div');
+                div.className = 'p-3 bg-gray-800 hover:bg-gray-750 border border-gray-700 rounded-xl cursor-pointer transition-colors flex justify-between items-center';
+                div.onclick = () => selectStore(s);
+                div.innerHTML = `
+                    <div>
+                        <h4 class="font-bold text-sm text-white">${s.name}</h4>
+                        <p class="text-xs text-gray-400 mt-0.5">${s.address}</p>
+                    </div>
+                    <span class="text-xs font-semibold text-bhc-yellow bg-bhc-yellow/10 px-2 py-1 rounded border border-bhc-yellow/20">${s.dist}</span>
+                `;
+                listContainer.appendChild(div);
+            });
+        }
+
+        function selectStore(store) {
+            document.getElementById('map-store-name').innerText = store.name;
+            document.getElementById('map-store-address').innerText = store.address;
+            document.getElementById('map-store-phone').innerHTML = `<i class="fa-solid fa-phone text-bhc-yellow mr-1"></i>${store.phone}`;
+            showToast(`${store.name} 위치가 선택되었습니다.`);
+        }
+
+        function resetMapView() {
+            selectStore(storeData[0]);
+        }
+
+        function checkout() {
+            if(cart.length === 0) {
+                alert('장바구니가 비어 있습니다.');
+                return;
+            }
+            alert('주문 완료되었습니다! (데모 화면)');
+            cart = [];
+            updateCartUI();
+            closeCart();
+        }
+    </script>
+</body>
+</html>
